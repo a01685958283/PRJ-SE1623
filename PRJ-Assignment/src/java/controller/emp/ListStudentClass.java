@@ -1,9 +1,10 @@
+package controller.emp;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller.emp;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,8 +18,8 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author DAT
  */
-@WebServlet(name="ShowController", urlPatterns={"/emp/show"})
-public class ShowController extends HttpServlet {
+@WebServlet(urlPatterns={"/listStudentClass"})
+public class ListStudentClass extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -35,10 +36,10 @@ public class ShowController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ShowController</title>");  
+            out.println("<title>Servlet listStudentClass</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ShowController at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet listStudentClass at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -55,8 +56,8 @@ public class ShowController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        request.getRequestDispatcher("../view/emp/show.jsp").forward(request, response);
-    } 
+        request.getRequestDispatcher("../view/emp/liststudent.jsp").forward(request, response);
+    }  
 
     /** 
      * Handles the HTTP <code>POST</code> method.

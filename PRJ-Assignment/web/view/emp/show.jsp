@@ -14,7 +14,8 @@
     <body>
         <table  margin: 0;
                 padding: 0 ;cellspacing="5" width=85% height="300" border="2">
-        <tr><strong>Activities for DatDTHE161701 (Đoàn Tiến Đạt)</strong>        
+        <tr>
+            <strong>Activities for DatDTHE161701 (Đoàn Tiến Đạt)</strong>        
         </tr>
         <tr>
             <td colspan="2"></td>
