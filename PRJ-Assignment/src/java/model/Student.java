@@ -12,12 +12,12 @@ public class Student {
     private String StudentID;
     private String StudentName;
     private String StudentEmail;
-    private String StudentPhoneNumber;
+    private int StudentPhoneNumber;
 
     public Student() {
     }
 
-    public Student(String StudentID, String StudentName, String StudentEmail, String StudentPhoneNumber) {
+    public Student(String StudentID, String StudentName, String StudentEmail, int StudentPhoneNumber) {
         this.StudentID = StudentID;
         this.StudentName = StudentName;
         this.StudentEmail = StudentEmail;
@@ -36,7 +36,7 @@ public class Student {
         return StudentEmail;
     }
 
-    public String getStudentPhoneNumber() {
+    public int getStudentPhoneNumber() {
         return StudentPhoneNumber;
     }
 
@@ -52,7 +52,7 @@ public class Student {
         this.StudentEmail = StudentEmail;
     }
 
-    public void setStudentPhoneNumber(String StudentPhoneNumber) {
+    public void setStudentPhoneNumber(int StudentPhoneNumber) {
         this.StudentPhoneNumber = StudentPhoneNumber;
     }
         

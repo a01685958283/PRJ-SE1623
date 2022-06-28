@@ -27,11 +27,12 @@
                     <td valign="top">Status</td>
                     <td valign="top">Comment</td>
                 </tr>
+                <c:forEach items="${requestScope.emps}" var="e">
                 <tr>
                     <td valign="top">1</td>
-                    <td valign="top"><span style="color: blue">SE1623</span></td>
-                    <td valign="top"><span style="color: blue">HE161701</span></td>
-                    <td valign="top"><span style="color: blue">Đoàn Tiến Đạt</span></td>
+                    <td valign="top"><span style="color: blue">${e.GroupID}</span></td>
+                    <td valign="top"><span style="color: blue">${e.StudenID}</span></td>
+                    <td valign="top"><span style="color: blue">${e.StudentName}</span></td>
                     <td align="center"><img src="https://znews-photo.zingcdn.me/w660/Uploaded/ywfrd/2020_11_14/ee8aec7fb7924a48bcc189a4bb5da2695803cd8b_1.jpg" height="120" width="80%" alt="" /></td>
                     <td valign="top">
                         <input type="radio" name="attendence" value="absent"/>Absent</br>
@@ -62,7 +63,8 @@
                         <input type="radio" name="attendence" value="present"/>Present
                     </td>
                     <td valign="top"></td>
-                </tr>        
+                </tr>  
+                </c:forEach>
             </table>
             <input type="submit"  value="Save">
         </form>
