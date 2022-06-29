@@ -10,51 +10,59 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.GroupStudent;
-
+import model.StudentGroup;
+import model.Student;
+import model.Group;
 /**
  *
  * @author DAT
  */
-public class GroupStudentDBContext  extends DBContext<GroupStudent>{
+public class StudentGroupDBContext  extends DBContext<StudentGroup>{
 
     @Override
-    public ArrayList<GroupStudent> list() {
-        ArrayList<GroupStudent> gs = new ArrayList<>();
+    public ArrayList<StudentGroup> list() {
+        ArrayList<StudentGroup> gs = new ArrayList<>();
         try {
             String sql = "SELECT s.StudentID,s.StudentName,g.GroupID,g.GroupName,g.LecturesID\n" +
              "FROM Student s join StudentGroup sg ON s.StudentID = sg.StudentID join [Group] g ON sg.GroupID = g.GroupID";
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
-                GroupStudent d = new GroupStudent();
-                d.setGroupID(rs.getInt("g.GroupID"));
-                d.setStudentID(rs.getString("s.StudentID"));
-                d.setStudentName(rs.getString("s.StudentName"));
+                StudentGroup d = new StudentGroup();
+                d.setGroupID(rs.getInt("GroupID"));
+                d.setStudentID(rs.getString("StudentID"));
+                Student s = new Student();
+                s.setStudentName(rs.getString("StudentName"));
+                Group g = new Group();
+                g.setLecturesID(rs.getString("LecturesID"));
+                g.setCourseID(rs.getString("CourseID"));
+                d.setLecturesID(g);
+                d.setCourseID(g);
+                d.setStudentName(s);
                 gs.add(d);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(GroupStudentDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StudentGroup.class.getName()).log(Level.SEVERE, null, ex);
         }
         return gs;}
 
     @Override
-    public GroupStudent get(int id) {
+    public StudentGroup get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void insert(GroupStudent model) {
+    public void insert(StudentGroup model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void update(GroupStudent model) {
+    public void update(StudentGroup model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void delete(GroupStudent model) {
+    public void delete(StudentGroup model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

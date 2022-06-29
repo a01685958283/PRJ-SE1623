@@ -5,7 +5,8 @@
 
 package controller.emp;
 
-import dal.GroupStudentDBContext;
+import dal.GroupDBContext;
+import dal.StudentGroupDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,7 +15,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
-import model.GroupStudent;
+import model.Group;
+import model.StudentGroup;
 
 /**
  *
@@ -58,10 +60,9 @@ public class ShowAttendance extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        GroupStudentDBContext gsdb = new GroupStudentDBContext();      
-        ArrayList<GroupStudent> gs = gsdb.list();
-        
-        request.setAttribute("emps", gs);
+        GroupDBContext gb = new GroupDBContext();
+        Group gr = gb.list(3);
+        request.setAttribute("group", gr);
         request.getRequestDispatcher("../view/emp/attendance.jsp").forward(request, response);
     }  
 
@@ -75,7 +76,6 @@ public class ShowAttendance extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
     }
 
     /** 

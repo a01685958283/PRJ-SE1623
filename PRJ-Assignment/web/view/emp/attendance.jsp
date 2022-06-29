@@ -4,6 +4,7 @@
     Author     : DAT
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,47 +24,21 @@
                     <td valign="top">Group</td>
                     <td valign="top">Code</td>
                     <td valign="top">Name</td>
-                    <td align="center">Image</td>
                     <td valign="top">Status</td>
                     <td valign="top">Comment</td>
                 </tr>
-                <c:forEach items="${requestScope.emps}" var="e">
+                <c:forEach items="${requestScope.group.st}" var="g" varStatus="loop">
                 <tr>
-                    <td valign="top">1</td>
-                    <td valign="top"><span style="color: blue">${e.GroupID}</span></td>
-                    <td valign="top"><span style="color: blue">${e.StudenID}</span></td>
-                    <td valign="top"><span style="color: blue">${e.StudentName}</span></td>
-                    <td align="center"><img src="https://znews-photo.zingcdn.me/w660/Uploaded/ywfrd/2020_11_14/ee8aec7fb7924a48bcc189a4bb5da2695803cd8b_1.jpg" height="120" width="80%" alt="" /></td>
+                    <td valign="top">${loop.index+1}</td>
+                    <td valign="top"><span style="color: blue">${requestScope.group.groupName}</span></td>
+                    <td valign="top"><span style="color: blue">${g.studentID}</span></td>
+                    <td valign="top"><span style="color: blue">${g.studentName}</span></td>
                     <td valign="top">
                         <input type="radio" name="attendence" value="absent"/>Absent</br>
                         <input type="radio" name="attendence" value="present"/>Present
                     </td>
                     <td valign="top"></td>
                 </tr>
-                <tr>
-                    <td valign="top">2</td>
-                    <td valign="top"><span style="color: blue">SE1623</span></td>
-                    <td valign="top"><span style="color: blue">HE161702</span></td>
-                    <td valign="top"><span style="color: blue">Đoàn Bảo Đức</span></td>
-                    <td align="center"><img src="https://i.pinimg.com/236x/ce/64/8d/ce648d33d6b765eb1044a8385da6fed6.jpg" height="120" width="80%" alt="" /></td>
-                    <td valign="top">
-                        <input type="radio" name="attendence" value="absent"/>Absent</br>
-                        <input type="radio" name="attendence" value="present"/>Present
-                    </td>
-                    <td valign="top"><span style="color: red">Covid-19</span></td>
-                </tr>
-                <tr>
-                    <td valign="top">3</td>
-                    <td valign="top"><span style="color: blue">SE1623</span></td>
-                    <td valign="top"><span style="color: blue">HE161703</span></td>
-                    <td valign="top"><span style="color: blue">Vũ Viêt Hoàng</span></td>
-                    <td align="center"><img src="https://kenh14cdn.com/203336854389633024/2021/4/3/photo-6-161746805626497079920.jpg" height="120" width="80%" alt="" /></td>
-                    <td valign="top">
-                        <input type="radio" name="attendence" value="absent"/>Absent</br>
-                        <input type="radio" name="attendence" value="present"/>Present
-                    </td>
-                    <td valign="top"></td>
-                </tr>  
                 </c:forEach>
             </table>
             <input type="submit"  value="Save">

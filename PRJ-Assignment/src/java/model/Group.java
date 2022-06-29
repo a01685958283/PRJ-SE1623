@@ -4,6 +4,9 @@
  */
 package model;
 
+import java.util.ArrayList;
+
+
 /**
  *
  * @author DAT
@@ -11,23 +14,32 @@ package model;
 public class Group {
     private int GroupID;
     private String GroupName;
-    private String LectiuresID;
-    private String CoureID;
+    private Lectures LecturesID;
+    private Course CourseID;
+    private ArrayList<Student> st = new ArrayList<>();
 
     public int getGroupID() {
         return GroupID;
+    }
+
+    public void setSt(ArrayList<Student> st) {
+        this.st = st;
+    }
+
+    public ArrayList<Student> getSt() {
+        return st;
     }
 
     public String getGroupName() {
         return GroupName;
     }
 
-    public String getLectiuresID() {
-        return LectiuresID;
+    public Lectures getLecturesID() {
+        return LecturesID;
     }
 
-    public String getCoureID() {
-        return CoureID;
+    public Course getCourseID() {
+        return CourseID;
     }
 
     public void setGroupID(int GroupID) {
@@ -38,12 +50,12 @@ public class Group {
         this.GroupName = GroupName;
     }
 
-    public void setLectiuresID(String LectiuresID) {
-        this.LectiuresID = LectiuresID;
+    public void setLecturesID(Lectures LecturesID) {
+        this.LecturesID = LecturesID;
     }
 
-    public void setCoureID(String CoureID) {
-        this.CoureID = CoureID;
+    public void setCourseID(Course CourseID) {
+        this.CourseID = CourseID;
     }
     
 }
