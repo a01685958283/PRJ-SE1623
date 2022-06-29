@@ -1,10 +1,9 @@
-package controller.emp;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
+package controller.emp;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,8 +17,8 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author DAT
  */
-@WebServlet(urlPatterns={"/listStudentClass"})
-public class ListStudentClass extends HttpServlet {
+@WebServlet(name="LecturesSession", urlPatterns={"/emp/session"})
+public class LecturesSession extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -36,10 +35,10 @@ public class ListStudentClass extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet listStudentClass</title>");  
+            out.println("<title>Servlet LecturesSession</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet listStudentClass at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet LecturesSession at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,8 +55,8 @@ public class ListStudentClass extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        request.getRequestDispatcher("../view/emp/liststudent.jsp").forward(request, response);
-    }  
+        request.getRequestDispatcher("../view/emp/session.jsp").forward(request, response);
+    } 
 
     /** 
      * Handles the HTTP <code>POST</code> method.

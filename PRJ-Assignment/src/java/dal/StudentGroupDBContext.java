@@ -23,23 +23,10 @@ public class StudentGroupDBContext  extends DBContext<StudentGroup>{
     public ArrayList<StudentGroup> list() {
         ArrayList<StudentGroup> gs = new ArrayList<>();
         try {
-            String sql = "SELECT s.StudentID,s.StudentName,g.GroupID,g.GroupName,g.LecturesID\n" +
-             "FROM Student s join StudentGroup sg ON s.StudentID = sg.StudentID join [Group] g ON sg.GroupID = g.GroupID";
+            String sql = "";
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
-                StudentGroup d = new StudentGroup();
-                d.setGroupID(rs.getInt("GroupID"));
-                d.setStudentID(rs.getString("StudentID"));
-                Student s = new Student();
-                s.setStudentName(rs.getString("StudentName"));
-                Group g = new Group();
-                g.setLecturesID(rs.getString("LecturesID"));
-                g.setCourseID(rs.getString("CourseID"));
-                d.setLecturesID(g);
-                d.setCourseID(g);
-                d.setStudentName(s);
-                gs.add(d);
             }
         } catch (SQLException ex) {
             Logger.getLogger(StudentGroup.class.getName()).log(Level.SEVERE, null, ex);
