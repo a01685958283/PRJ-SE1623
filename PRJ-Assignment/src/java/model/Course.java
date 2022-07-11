@@ -12,6 +12,14 @@ public class Course {
     private String CourseID;
     private String CourseName;
 
+    public Course() {
+    }
+
+    public Course(String CourseID, String CourseName) {
+        this.CourseID = CourseID;
+        this.CourseName = CourseName;
+    }
+    
     public String getCourseID() {
         return CourseID;
     }

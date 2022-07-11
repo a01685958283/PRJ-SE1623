@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Attendence;
 import model.Course;
 import model.Group;
 import model.Lectures;
@@ -23,8 +24,8 @@ public class GroupDBContext extends DBContext<Group> {
 
     public Group list(int GroupID) {
         try {
-            String sql = "SELECT s.StudentID,s.StudentName,s.StudentEmail,s.StudentPhoneNumber,g.GroupID,g.GroupName,g.LecturesID,g.CourseID\n"
-                    + "FROM Student s join StudentGroup sg ON s.StudentID = sg.StudentID join [Group] g ON sg.GroupID = g.GroupID\n"
+            String sql = "SELECT s.StudentID,s.StudentName,s.StudentEmail,s.StudentPhoneNumber,g.GroupID,g.GroupName,g.LecturesID,g.CourseID,a.Status,a.Comment\n"
+                    + "FROM Attendence a join Student s ON a.StudentID = s.StudentID join StudentGroup sg ON s.StudentID = sg.StudentID join [Group] g ON sg.GroupID = g.GroupID\n"
                     + "where g.GroupID = ?";
 
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -49,6 +50,10 @@ public class GroupDBContext extends DBContext<Group> {
                 s.setStudentEmail(rs.getString("StudentEmail"));
                 s.setStudentPhoneNumber(rs.getInt("StudentPhoneNumber"));
                 g.getSt().add(s);
+                Attendence a = new Attendence();
+                a.setStatus(rs.getString("Status"));
+                a.setComment(rs.getString("Comment"));
+                g.getSt2().add(a);
             }
             return g;
         } catch (SQLException ex) {

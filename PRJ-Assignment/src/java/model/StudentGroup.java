@@ -17,6 +17,18 @@ public class StudentGroup {
     Group LecturesID;
     Student StudentName;
 
+    public StudentGroup() {
+    }
+
+    public StudentGroup(int GroupID, String StudentID, Group GroupName, Group CourseID, Group LecturesID, Student StudentName) {
+        this.GroupID = GroupID;
+        this.StudentID = StudentID;
+        this.GroupName = GroupName;
+        this.CourseID = CourseID;
+        this.LecturesID = LecturesID;
+        this.StudentName = StudentName;
+    }
+    
     public int getGroupID() {
         return GroupID;
     }

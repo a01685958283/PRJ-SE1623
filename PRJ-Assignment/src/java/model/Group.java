@@ -17,7 +17,17 @@ public class Group {
     private Lectures LecturesID;
     private Course CourseID;
     private ArrayList<Student> st = new ArrayList<>();
+    private ArrayList<Attendence> st2 = new ArrayList<>();
+    public Group() {
+    }
 
+    public Group(int GroupID, String GroupName, Lectures LecturesID, Course CourseID) {
+        this.GroupID = GroupID;
+        this.GroupName = GroupName;
+        this.LecturesID = LecturesID;
+        this.CourseID = CourseID;
+    }    
+     
     public int getGroupID() {
         return GroupID;
     }
@@ -25,9 +35,17 @@ public class Group {
     public void setSt(ArrayList<Student> st) {
         this.st = st;
     }
-
+    
     public ArrayList<Student> getSt() {
         return st;
+    }
+    
+    public void setSt2(ArrayList<Attendence> st2) {
+        this.st2 = st2;
+    }
+
+    public ArrayList<Attendence> getSt2() {
+        return st2;
     }
 
     public String getGroupName() {

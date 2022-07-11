@@ -14,6 +14,16 @@ public class Lectures {
     private String LecturesEmail;
     private int LecturesPhoneNumber;
 
+    public Lectures() {
+    }
+
+    public Lectures(String LecturesID, String LecturesName, String LecturesEmail, int LecturesPhoneNumber) {
+        this.LecturesID = LecturesID;
+        this.LecturesName = LecturesName;
+        this.LecturesEmail = LecturesEmail;
+        this.LecturesPhoneNumber = LecturesPhoneNumber;
+    }
+    
     public String getLecturesID() {
         return LecturesID;
     }

@@ -15,6 +15,17 @@ public class Attendence {
     private String Comment;
     private String RecordTime;
 
+    public Attendence() {
+    }
+
+    public Attendence(Student StudentID, Session SessionID, String Status, String Comment, String RecordTime) {
+        this.StudentID = StudentID;
+        this.SessionID = SessionID;
+        this.Status = Status;
+        this.Comment = Comment;
+        this.RecordTime = RecordTime;
+    }
+    
     public Student getStudentID() {
         return StudentID;
     }

@@ -17,6 +17,17 @@ public class Session {
     private String GroupID;
     private String TimeSlotID;
 
+    public Session() {
+    }
+
+    public Session(int SessionID, Date SessionDate, String RoomID, String GroupID, String TimeSlotID) {
+        this.SessionID = SessionID;
+        this.SessionDate = SessionDate;
+        this.RoomID = RoomID;
+        this.GroupID = GroupID;
+        this.TimeSlotID = TimeSlotID;
+    }
+    
     public int getSessionID() {
         return SessionID;
     }
