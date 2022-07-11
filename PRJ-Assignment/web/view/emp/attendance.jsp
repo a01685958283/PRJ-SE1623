@@ -37,7 +37,9 @@
                         <input type="radio" name="attendence" value="absent"/>Absent</br>
                         <input type="radio" name="attendence" value="present"/>Present
                     </td>
-                    <td valign="top"></td>
+                    <td valign="top">
+                        <input type="text" name="note"/><br/>
+                    </td>
                 </tr>
                 </c:forEach>
             </table>

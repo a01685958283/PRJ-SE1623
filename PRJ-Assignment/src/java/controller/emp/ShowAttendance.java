@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import model.Attendence;
 import model.Group;
 import model.StudentGroup;
 
@@ -76,6 +77,13 @@ public class ShowAttendance extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        String raw_attendence = request.getParameter("attendence");
+        String raw_comment = request.getParameter("note");
+        boolean attendence = Boolean.parseBoolean(raw_attendence);
+        
+        Attendence model = new Attendence();
+        model.setStatus(attendence);
+        model.setComment(raw_comment);
     }
 
     /** 
