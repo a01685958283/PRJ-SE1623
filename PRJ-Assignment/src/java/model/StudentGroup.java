@@ -10,71 +10,30 @@ package model;
  */
 public class StudentGroup {
 
-    private int GroupID;
-    private String StudentID;
-    Group GroupName;
-    Group CourseID;
-    Group LecturesID;
-    Student StudentName;
+    private Group GroupID;
+    private Student StudentID;
 
     public StudentGroup() {
     }
 
-    public StudentGroup(int GroupID, String StudentID, Group GroupName, Group CourseID, Group LecturesID, Student StudentName) {
+    public StudentGroup(Group GroupID, Student StudentID) {
         this.GroupID = GroupID;
         this.StudentID = StudentID;
-        this.GroupName = GroupName;
-        this.CourseID = CourseID;
-        this.LecturesID = LecturesID;
-        this.StudentName = StudentName;
     }
-    
-    public int getGroupID() {
+
+    public Group getGroupID() {
         return GroupID;
     }
 
-    public String getStudentID() {
+    public Student getStudentID() {
         return StudentID;
     }
 
-    public Group getGroupName() {
-        return GroupName;
-    }
-
-    public Group getCourseID() {
-        return CourseID;
-    }
-
-    public Group getLecturesID() {
-        return LecturesID;
-    }
-
-    public Student getStudentName() {
-        return StudentName;
-    }
-
-    public void setGroupID(int GroupID) {
+    public void setGroupID(Group GroupID) {
         this.GroupID = GroupID;
     }
 
-    public void setStudentID(String StudentID) {
+    public void setStudentID(Student StudentID) {
         this.StudentID = StudentID;
-    }
-
-    public void setGroupName(Group GroupName) {
-        this.GroupName = GroupName;
-    }
-
-    public void setCourseID(Group CourseID) {
-        this.CourseID = CourseID;
-    }
-
-    public void setLecturesID(Group LecturesID) {
-        this.LecturesID = LecturesID;
-    }
-
-    public void setStudentName(Student StudentName) {
-        this.StudentName = StudentName;
-    }
-    
+    }   
 }

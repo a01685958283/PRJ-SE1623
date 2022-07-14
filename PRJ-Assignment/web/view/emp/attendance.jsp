@@ -13,12 +13,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form>
+        <form action = "attendance" method = "POST">
             <table  margin: 0;
                     padding: 0 ;cellspacing="5" width=80% height="500" border="2">
-                <tr>
-                <strong>Attendenced for PRJ391 with lecture sonnt5 at slot 5 on Monday 20/06/2022</strong>        
-                </tr>
                 <tr>
                     <td valign="top">No</td>
                     <td valign="top">Group</td>
@@ -27,19 +24,18 @@
                     <td valign="top">Status</td>
                     <td valign="top">Comment</td>
                 </tr>
-                <c:forEach items="${requestScope.group.st}" var="g" varStatus="loop">
+                <c:forEach items="${requestScope.listStudent}" var="list" varStatus="loop">
                 <tr>
+                    <td hidden><input type="text" name="studentID" value="${list.studentID.studentID}"/></td>
                     <td valign="top">${loop.index+1}</td>
-                    <td valign="top"><span style="color: blue">${requestScope.group.groupName}</span></td>
-                    <td valign="top"><span style="color: blue">${g.studentID}</span></td>
-                    <td valign="top"><span style="color: blue">${g.studentName}</span></td>
+                    <td valign="top"><span style="color: blue">${list.groupID.groupName}</span></td>
+                    <td valign="top"><span style="color: blue">${list.studentID.studentID}</span></td>
+                    <td valign="top"><span style="color: blue">${list.studentID.studentName}</span></td>
                     <td valign="top">
-                        <input type="radio" name="attendence" value="absent"/>Absent</br>
-                        <input type="radio" name="attendence" value="present"/>Present
+                        <input type="radio" name="status_${list.studentID.studentID}" value="absent"/>Absent</br>
+                        <input type="radio" name="status_${list.studentID.studentID}" value="present"/>Present</br>
                     </td>
-                    <td valign="top">
-                        <input type="text" name="note"/><br/>
-                    </td>
+                    <td valign="top"><input type="text" name="comment_${list.studentID.studentID}"/></td>
                 </tr>
                 </c:forEach>
             </table>

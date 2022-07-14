@@ -25,7 +25,7 @@ public class GroupDBContext extends DBContext<Group> {
     public Group list(int GroupID) {
         try {
             String sql = "SELECT s.StudentID,s.StudentName,s.StudentEmail,s.StudentPhoneNumber,g.GroupID,g.GroupName,g.LecturesID,g.CourseID,a.Status,a.Comment\n"
-                    + "FROM Attendence a join Student s ON a.StudentID = s.StudentID join StudentGroup sg ON s.StudentID = sg.StudentID join [Group] g ON sg.GroupID = g.GroupID\n"
+                    + "FROM Student s ON a.StudentID = s.StudentID join StudentGroup sg ON s.StudentID = sg.StudentID join [Group] g ON sg.GroupID = g.GroupID\n"
                     + "where g.GroupID = ?";
 
             PreparedStatement stm = connection.prepareStatement(sql);

@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.sql.Date;
+
 /**
  *
  * @author DAT
@@ -13,12 +15,12 @@ public class Attendence {
     private Session SessionID;
     private String Status;
     private String Comment;
-    private String RecordTime;
+    private Date RecordTime;
 
     public Attendence() {
     }
 
-    public Attendence(Student StudentID, Session SessionID, String Status, String Comment, String RecordTime) {
+    public Attendence(Student StudentID, Session SessionID, String Status, String Comment, Date RecordTime) {
         this.StudentID = StudentID;
         this.SessionID = SessionID;
         this.Status = Status;
@@ -42,7 +44,7 @@ public class Attendence {
         return Comment;
     }
 
-    public String getRecordTime() {
+    public Date getRecordTime() {
         return RecordTime;
     }
 
@@ -62,7 +64,7 @@ public class Attendence {
         this.Comment = Comment;
     }
 
-    public void setRecordTime(String RecordTime) {
+    public void setRecordTime(Date RecordTime) {
         this.RecordTime = RecordTime;
     }
     

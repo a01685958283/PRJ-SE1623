@@ -5,8 +5,9 @@
 
 package controller.emp;
 
+import dal.CourseDBContext;
 import dal.GroupDBContext;
-import dal.StudentGroupDBContext;
+import dal.StudentDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -15,16 +16,16 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
-import model.Attendence;
+import model.Course;
 import model.Group;
-import model.StudentGroup;
+import model.Student;
 
 /**
  *
  * @author DAT
  */
-@WebServlet(name="ShowAttendance", urlPatterns={"/emp/attendance"})
-public class ShowAttendance extends HttpServlet {
+@WebServlet(name="Filter", urlPatterns={"/emp/filter"})
+public class Filter extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -41,10 +42,10 @@ public class ShowAttendance extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ShowAttendance</title>");  
+            out.println("<title>Servlet Filter</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ShowAttendance at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet Filter at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,12 +62,25 @@ public class ShowAttendance extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        StudentGroupDBContext sgdb = new StudentGroupDBContext();
-         ArrayList<StudentGroup> c = sgdb.listStudentInAGroup(3);
-              
-        request.setAttribute("listStudent", c);
-        request.getRequestDispatcher("../view/emp/attendance.jsp").forward(request, response);
-    }  
+        CourseDBContext cdb = new CourseDBContext();
+        ArrayList<Course> courses = cdb.list();
+        
+        String courseID = request.getParameter("course");
+        GroupDBContext gdb = new GroupDBContext();
+        ArrayList<Group> groupslistbycourse = gdb.listGroupByCourse(courseID);
+        
+        String raw_groupID = request.getParameter("group");
+        Integer groupID = (raw_groupID != null && raw_groupID.length() > 0) ? new Integer(raw_groupID) : -1;
+        
+        StudentDBContext sdb = new StudentDBContext();
+        ArrayList<Student> students = sdb.listStudentInAGroup(groupID);
+        
+        request.setAttribute("students", students);
+        request.setAttribute("groups", groupslistbycourse);
+        request.setAttribute("courses", courses);
+        request.getRequestDispatcher("/view/filter/filter.jsp").forward(request, response);
+    
+    } 
 
     /** 
      * Handles the HTTP <code>POST</code> method.
@@ -78,6 +92,7 @@ public class ShowAttendance extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     /** 
