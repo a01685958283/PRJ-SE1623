@@ -78,7 +78,7 @@ public class Filter extends HttpServlet {
         request.setAttribute("students", students);
         request.setAttribute("groups", groupslistbycourse);
         request.setAttribute("courses", courses);
-        request.getRequestDispatcher("/view/filter/filter.jsp").forward(request, response);
+        request.getRequestDispatcher("../view/emp/filter.jsp").forward(request, response);
     
     } 
 

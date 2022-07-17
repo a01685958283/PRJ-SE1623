@@ -14,9 +14,9 @@ import model.Course;
 
 /**
  *
- * @author ACER
+ * @author DAT
  */
-public class CourseDBContext extends DBContext<Course>{
+public class CourseDBContext extends DBContext<Course> {
 
     @Override
     public ArrayList<Course> list() {
@@ -25,7 +25,7 @@ public class CourseDBContext extends DBContext<Course>{
             String sql = "Select CourseID,CourseName from Course";
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 Course c = new Course();
                 c.setCourseID(rs.getString("CourseID"));
                 c.setCourseName(rs.getString("CourseName"));
@@ -56,5 +56,4 @@ public class CourseDBContext extends DBContext<Course>{
     public void delete(Course model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
 }
