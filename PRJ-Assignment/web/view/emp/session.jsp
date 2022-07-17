@@ -11,6 +11,20 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <style type="text/css">
+            table, th, td{
+                border:1px solid #868585;
+            }
+            table{
+                border-collapse:collapse;
+                width:100%;
+            }
+            th, td{
+                text-align:left;
+                padding:10px;
+            }
+           
+        </style>
     </head>
     <body>
 
@@ -32,13 +46,14 @@
                                     ${se.timeSlotID.timeSlotID}
                                 </td>
                                 <td>
-                                    ${se.timeSlotID.timeSlotBegin} - ${se.timeSlotID.timeSlotEnd} 
+                                    ${se.timeSlotID.timeSlotBegin} - ${se.timeSlotID.timeSlotEnd} </br>
+                                    (${se.sessionDate})
                                 </td>
                                 <td>
                                     ${se.roomID.roomID}
                                 </td>
                                 <td>
-                                    ${se.groupID.groupName}
+                                    <span style="color: blue">${se.groupID.groupName}</span>
                                 </td>
                                 <td>
                                     ${se.groupID.courseID.courseName} (${se.groupID.courseID.courseID})
