@@ -22,13 +22,12 @@ import model.Student;
  */
 public class GroupDBContext extends DBContext<Group> {
 
-    public Group list(int GroupID) {
+    public Group listStudentInAGroup(int GroupID) {
         try {
-            String sql = "SELECT s.StudentID,s.StudentName,s.StudentEmail,s.StudentPhoneNumber,g.GroupID,g.GroupName,g.LecturesID,g.CourseID,a.Status,a.Comment\n"
-                    + "FROM Student s ON a.StudentID = s.StudentID "
-                    + "join StudentGroup sg ON s.StudentID = sg.StudentID "
-                    + "join [Group] g ON sg.GroupID = g.GroupID\n"
-                    + "where g.GroupID = ?";
+            String sql = "SELECT s.StudentID,s.StudentName,s.StudentEmail,g.GroupID,g.GroupName,g.LecturesID,g.CourseID\n"
+                    + "FROM Student s join StudentGroup sg ON s.StudentID = sg.StudentID \n"
+                    + "join [Group] g ON sg.GroupID = g.GroupID \n"
+                    + " where g.GroupID = ?";
 
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, GroupID);
@@ -50,12 +49,7 @@ public class GroupDBContext extends DBContext<Group> {
                 s.setStudentID(rs.getString("StudentID"));
                 s.setStudentName(rs.getString("StudentName"));
                 s.setStudentEmail(rs.getString("StudentEmail"));
-                s.setStudentPhoneNumber(rs.getInt("StudentPhoneNumber"));
                 g.getSt().add(s);
-                Attendence a = new Attendence();
-                a.setStatus(rs.getString("Status"));
-                a.setComment(rs.getString("Comment"));
-                g.getSt2().add(a);
             }
             return g;
         } catch (SQLException ex) {

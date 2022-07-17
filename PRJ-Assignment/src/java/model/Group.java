@@ -17,7 +17,6 @@ public class Group {
     private Lectures LecturesID;
     private Course CourseID;
     private ArrayList<Student> st = new ArrayList<>();
-    private ArrayList<Attendence> st2 = new ArrayList<>();
     public Group() {
     }
 
@@ -40,13 +39,6 @@ public class Group {
         return st;
     }
     
-    public void setSt2(ArrayList<Attendence> st2) {
-        this.st2 = st2;
-    }
-
-    public ArrayList<Attendence> getSt2() {
-        return st2;
-    }
 
     public String getGroupName() {
         return GroupName;

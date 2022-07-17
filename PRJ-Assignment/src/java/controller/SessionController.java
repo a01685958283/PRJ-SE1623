@@ -3,29 +3,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller.emp;
+package controller;
 
-import dal.CourseDBContext;
-import dal.GroupDBContext;
-import dal.StudentDBContext;
+import dal.SessionDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
-import model.Course;
-import model.Group;
-import model.Student;
+import model.Session;
 
 /**
  *
- * @author DAT
+ * @author ACER
  */
-@WebServlet(name="Filter", urlPatterns={"/emp/filter"})
-public class Filter extends HttpServlet {
+public class SessionController extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -36,19 +30,7 @@ public class Filter extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Filter</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Filter at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -62,24 +44,11 @@ public class Filter extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        CourseDBContext cdb = new CourseDBContext();
-        ArrayList<Course> courses = cdb.list();
+         SessionDBContext sedb = new SessionDBContext();
+         //ArrayList<Session> s = sedb.getSessionInADay();            
         
-        String courseID = request.getParameter("course");
-        GroupDBContext gdb = new GroupDBContext();
-        ArrayList<Group> groupslistbycourse = gdb.listGroupByCourse(courseID);
-        
-        String raw_groupID = request.getParameter("group");
-        Integer groupID = (raw_groupID != null && raw_groupID.length() > 0) ? new Integer(raw_groupID) : -1;
-        
-        StudentDBContext sdb = new StudentDBContext();
-        ArrayList<Student> students = sdb.listStudentInAGroup(groupID);
-        
-        request.setAttribute("students", students);
-        request.setAttribute("groups", groupslistbycourse);
-        request.setAttribute("courses", courses);
-        request.getRequestDispatcher("../view/emp/filter.jsp").forward(request, response);
-    
+        //request.setAttribute("sessions",s);
+        request.getRequestDispatcher("../view/emp/session.jsp").forward(request, response);
     } 
 
     /** 

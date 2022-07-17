@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>ShowController</servlet-name>
+        <servlet-class>controller.ShowController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AttendanceController</servlet-name>
+        <servlet-class>controller.AttendanceController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FilterController</servlet-name>
+        <servlet-class>controller.FilterController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SessionController</servlet-name>
+        <servlet-class>controller.SessionController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowController</servlet-name>
+        <url-pattern>/Show</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AttendanceController</servlet-name>
+        <url-pattern>/Attendance</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FilterController</servlet-name>
+        <url-pattern>/Filter</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SessionController</servlet-name>
+        <url-pattern>/Session</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

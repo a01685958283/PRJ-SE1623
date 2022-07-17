@@ -12,8 +12,7 @@ public class Student {
     private String StudentID;
     private String StudentName;
     private String StudentEmail;
-    private int StudentPhoneNumber;
-
+    
     public Student() {
     }
 
@@ -21,7 +20,6 @@ public class Student {
         this.StudentID = StudentID;
         this.StudentName = StudentName;
         this.StudentEmail = StudentEmail;
-        this.StudentPhoneNumber = StudentPhoneNumber;
     }
 
     public String getStudentID() {
@@ -36,9 +34,6 @@ public class Student {
         return StudentEmail;
     }
 
-    public int getStudentPhoneNumber() {
-        return StudentPhoneNumber;
-    }
 
     public void setStudentID(String StudentID) {
         this.StudentID = StudentID;
@@ -52,8 +47,5 @@ public class Student {
         this.StudentEmail = StudentEmail;
     }
 
-    public void setStudentPhoneNumber(int StudentPhoneNumber) {
-        this.StudentPhoneNumber = StudentPhoneNumber;
-    }
         
 }

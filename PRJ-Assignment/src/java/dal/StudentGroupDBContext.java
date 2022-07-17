@@ -21,7 +21,7 @@ import model.Lectures;
  */
 public class StudentGroupDBContext  extends DBContext<StudentGroup>{
 
-    public ArrayList<StudentGroup> listStudentInAGroup(Integer GroupID) {
+    /*public ArrayList<StudentGroup> listStudentInAGroup(Integer GroupID) {
         ArrayList<StudentGroup> sg = new ArrayList<>();
         try {
             String sql = "Select s.StudentID,s.StudentName,s.StudentEmail,s.StudentPhoneNumber,g.GroupID,g.GroupName,g.CourseID,g.LecturesID\n"
@@ -36,7 +36,6 @@ public class StudentGroupDBContext  extends DBContext<StudentGroup>{
                 s.setStudentID(rs.getString("StudentID"));
                 s.setStudentName(rs.getString("StudentName"));
                 s.setStudentEmail(rs.getString("StudentEmail"));
-                s.setStudentPhoneNumber(rs.getInt("StudentPhoneNumber"));
                 Group g = new Group();
                 g.setGroupID(rs.getInt("GroupID"));
                 g.setGroupName(rs.getString("GroupName"));
@@ -58,7 +57,7 @@ public class StudentGroupDBContext  extends DBContext<StudentGroup>{
             Logger.getLogger(StudentGroup.class.getName()).log(Level.SEVERE, null, ex);
         }
         return sg;
-    }
+    }*/
     
     @Override
     public ArrayList<StudentGroup> list() {

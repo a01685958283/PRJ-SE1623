@@ -19,6 +19,7 @@ public class AttendanceDBContext extends DBContext<Attendence>{
 
     public void insertAttendance(ArrayList<Attendence> a) {
         try {
+            connection.setAutoCommit(false);
             for (Attendence attendence : a) {
                 String sql = "INSERT INTO [dbo].[Attendence]\n"
                     + "           ([StudentID]\n"
@@ -33,11 +34,24 @@ public class AttendanceDBContext extends DBContext<Attendence>{
             stm.setInt(2, attendence.getSessionID().getSessionID());
             stm.setString(3, attendence.getStatus());
             stm.setString(4, attendence.getComment());
-            stm.setDate(5, attendence.getRecordTime());
+            stm.setTime(5, attendence.getRecordTime());
             stm.executeUpdate();
             }
+            connection.commit();
         } catch (SQLException ex) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex1) {
+                Logger.getLogger(AttendanceDBContext.class.getName()).log(Level.SEVERE, null, ex1);
+            }
             Logger.getLogger(AttendanceDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(AttendanceDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
     

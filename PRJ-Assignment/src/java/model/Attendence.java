@@ -5,6 +5,7 @@
 package model;
 
 import java.sql.Date;
+import java.sql.Time;
 
 /**
  *
@@ -15,12 +16,12 @@ public class Attendence {
     private Session SessionID;
     private String Status;
     private String Comment;
-    private Date RecordTime;
+    private Time RecordTime;
 
     public Attendence() {
     }
 
-    public Attendence(Student StudentID, Session SessionID, String Status, String Comment, Date RecordTime) {
+    public Attendence(Student StudentID, Session SessionID, String Status, String Comment, Time RecordTime) {
         this.StudentID = StudentID;
         this.SessionID = SessionID;
         this.Status = Status;
@@ -44,7 +45,7 @@ public class Attendence {
         return Comment;
     }
 
-    public Date getRecordTime() {
+    public Time getRecordTime() {
         return RecordTime;
     }
 
@@ -64,7 +65,7 @@ public class Attendence {
         this.Comment = Comment;
     }
 
-    public void setRecordTime(Date RecordTime) {
+    public void setRecordTime(Time RecordTime) {
         this.RecordTime = RecordTime;
     }
     
