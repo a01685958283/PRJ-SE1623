@@ -5,6 +5,7 @@
 
 package controller.emp;
 
+import dal.SessionDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,13 +13,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import model.Session;
 
 /**
  *
  * @author DAT
  */
-@WebServlet(name="LecturesSession", urlPatterns={"/emp/session"})
-public class LecturesSession extends HttpServlet {
+@WebServlet(name="SessionLecture", urlPatterns={"/emp/session"})
+public class SessionLecture extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -35,10 +38,10 @@ public class LecturesSession extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LecturesSession</title>");  
+            out.println("<title>Servlet SessionLecture</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LecturesSession at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet SessionLecture at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -55,6 +58,10 @@ public class LecturesSession extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        SessionDBContext sedb = new SessionDBContext();
+        ArrayList<Session> s = sedb.getSessionInADay();            
+        
+        request.setAttribute("sessions",s);
         request.getRequestDispatcher("../view/emp/session.jsp").forward(request, response);
     } 
 

@@ -62,7 +62,7 @@ public class ShowAttendance extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         StudentGroupDBContext sgdb = new StudentGroupDBContext();
-         ArrayList<StudentGroup> c = sgdb.listStudentInAGroup(3);
+        ArrayList<StudentGroup> c = sgdb.listStudentInAGroup(3);
               
         request.setAttribute("listStudent", c);
         request.getRequestDispatcher("../view/emp/attendance.jsp").forward(request, response);

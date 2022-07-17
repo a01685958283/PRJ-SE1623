@@ -1,6 +1,6 @@
 <%-- 
-    Document   : session
-    Created on : 29-Jun-2022, 13:33:38
+    Document   : choose
+    Created on : 15-Jul-2022, 16:24:58
     Author     : DAT
 --%>
 
@@ -12,18 +12,49 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <tr>Lectures: sonnt5</tr>
-        <tr>
-            <td align="center">Date</td></br>
-            <td align="center">Course</td></br>
-            <td align="center">Group</td></br>
-            <td align="center">Slot</td></br>
-        </tr>
-        <tr>
-            <td align="center">20/6/2022</td>
-            <td align="center">CSD201</td>
-            <td align="center">SE1623</td>
-            <td align="center">Slot 1</td>
-        </tr>
+        <form action = "attendance" method = "POST">
+            <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr class="bg-light-gray">
+                            <th class="text-uppercase">No</th>
+                            <th class="text-uppercase">Time</th>
+                            <th class="text-uppercase">Room</th>
+                            <th class="text-uppercase">Group</th>
+                            <th class="text-uppercase">Course</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="${requestScope.sessions}" var="se" varStatus="loop">
+                            <tr>
+                                <td>
+                                    ${se.timeSlotID.timeSlotBegin} - ${se.timeSlotID.timeSlotEnd} ${se.sessionDate}
+                                </td>
+                                <td>
+                                    ${se.roomID.roomID}
+                                </td>
+                                <td>
+                                    ${se.groupID.groupName}
+                                </td>
+                                <td>
+                                    ${se.groupID.courseID.courseName} (${se.groupID.courseID.courseID})
+                                </td>
+                                <c:if test="${not requestScope.check[loop.index]}">
+                                    <td>
+                                        <a href="Attendance?group=${se.groupID.groupID}&session=${se.sessionID}"> Take </a>
+                                    </td>
+                                </c:if>
+                                <c:if test="${requestScope.check[loop.index]}">
+                                    <td>
+                                        <a href="View?session=${se.sessionID}"> View </a>
+                                    </td>
+                                </c:if>
+                            </tr>
+
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+        </form>
     </body>
 </html>

@@ -5,6 +5,7 @@
 package model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,21 +14,15 @@ import java.sql.Date;
 public class Session {
     private int SessionID;
     private Date SessionDate;
-    private String RoomID;
-    private String GroupID;
-    private String TimeSlotID;
+    private Room RoomID;
+    private Group GroupID;
+    private TimeSlot TimeSlotID;
+    private Lectures LecturesID;
+    private ArrayList<Attendence> attendances = new ArrayList<>();
 
     public Session() {
     }
 
-    public Session(int SessionID, Date SessionDate, String RoomID, String GroupID, String TimeSlotID) {
-        this.SessionID = SessionID;
-        this.SessionDate = SessionDate;
-        this.RoomID = RoomID;
-        this.GroupID = GroupID;
-        this.TimeSlotID = TimeSlotID;
-    }
-    
     public int getSessionID() {
         return SessionID;
     }
@@ -36,16 +31,24 @@ public class Session {
         return SessionDate;
     }
 
-    public String getRoomID() {
+    public Room getRoomID() {
         return RoomID;
     }
 
-    public String getGroupID() {
+    public Group getGroupID() {
         return GroupID;
     }
 
-    public String getTimeSlotID() {
+    public TimeSlot getTimeSlotID() {
         return TimeSlotID;
+    }
+
+    public Lectures getLecturesID() {
+        return LecturesID;
+    }
+
+    public ArrayList<Attendence> getAttendances() {
+        return attendances;
     }
 
     public void setSessionID(int SessionID) {
@@ -56,16 +59,24 @@ public class Session {
         this.SessionDate = SessionDate;
     }
 
-    public void setRoomID(String RoomID) {
+    public void setRoomID(Room RoomID) {
         this.RoomID = RoomID;
     }
 
-    public void setGroupID(String GroupID) {
+    public void setGroupID(Group GroupID) {
         this.GroupID = GroupID;
     }
 
-    public void setTimeSlotID(String TimeSlotID) {
+    public void setTimeSlotID(TimeSlot TimeSlotID) {
         this.TimeSlotID = TimeSlotID;
+    }
+
+    public void setLecturesID(Lectures LecturesID) {
+        this.LecturesID = LecturesID;
+    }
+
+    public void setAttendances(ArrayList<Attendence> attendances) {
+        this.attendances = attendances;
     }
     
 }
