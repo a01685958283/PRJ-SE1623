@@ -10,54 +10,61 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.TimeSlot;
+import model.Account;
 
 /**
  *
- * @author DAT
+ * @author ACER
  */
-public class TimeSlotDBContext extends DBContext<TimeSlot>{
+public class AccountDBContext extends DBContext {
 
-    @Override
-    public ArrayList<TimeSlot> list() {
-        ArrayList<TimeSlot> ts = new ArrayList<>();
+    public Account isExits(String username, String password) {
         try {
-            String sql = "SELECT [TimeSlotID]\n"
-                    + "      ,[TimeSlotBegin]\n"
-                    + "      ,[TimeSlotEnd]\n"
-                    + "  FROM [dbo].[TimeSlot]";
+            String sql = "SELECT [username]\n"
+                    + "      ,[password]\n"
+                    + "      ,[displayname]\n"
+                    + "  FROM [dbo].[Account]\n"
+                    + "  Where username = ? AND [password] = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, username);
+            stm.setString(2, password);
             ResultSet rs = stm.executeQuery();
-            while (rs.next()) {
-                TimeSlot t = new TimeSlot();
-                t.setTimeSlotID(rs.getString("TimeslotID"));
-                t.setTimeSlotBegin(rs.getTime("TimeSlotBegin"));
-                t.setTimeSlotEnd(rs.getTime("TimeSlotEnd"));
-                ts.add(t);
+
+            if (rs.next()) {
+                Account a = new Account();
+                a.setUsername(username);
+                a.setPassword(password);
+                a.setDisplayname(rs.getString("displayname"));
+                return a;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(TimeSlotDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return ts;}
+        return null;
+    }
 
     @Override
-    public TimeSlot get(int id) {
+    public ArrayList list() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void insert(TimeSlot model) {
+    public Object get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void update(TimeSlot model) {
+    public void insert(Object model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void delete(TimeSlot model) {
+    public void update(Object model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
+    @Override
+    public void delete(Object model) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

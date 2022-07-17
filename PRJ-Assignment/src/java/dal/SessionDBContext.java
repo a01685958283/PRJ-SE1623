@@ -33,7 +33,7 @@ public class SessionDBContext extends DBContext<Session> {
                     + "join TimeSlot t on s.TimeSlotID = t.TimeSlotID\n"
                     + "join Lectures l on g.LecturesID = l.LecturesID\n"
                     + "join Room r on s.RoomID = r.RoomID\n"
-                    + "where g.LecturesID = 'sonnt5' and s.SessionDate = '2022-05-09'";
+                    + "where g.LecturesID = ? and s.SessionDate = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, lecturesID);
             stm.setDate(2, date);
@@ -62,7 +62,7 @@ public class SessionDBContext extends DBContext<Session> {
                 se.setGroupID(g);
 
                 TimeSlot ts = new TimeSlot();
-                ts.setTimeslotID(rs.getString("TimeSlotID"));
+                ts.setTimeSlotID(rs.getString("TimeSlotID"));
                 ts.setTimeSlotBegin(rs.getTime("TimeSlotBegin"));
                 ts.setTimeSlotEnd(rs.getTime("TimeSlotEnd"));
                 se.setTimeSlotID(ts);

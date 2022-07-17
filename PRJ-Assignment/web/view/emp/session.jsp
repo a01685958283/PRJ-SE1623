@@ -4,6 +4,7 @@
     Author     : DAT
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,10 +13,10 @@
         <title>JSP Page</title>
     </head>
     <body>
+
         <form action = "attendance" method = "POST">
             <div class="table-responsive">
-                <table class="table table-bordered table-striped table-responsive-stack"  id="tableOne">
-      <thead class="thead-dark">
+                <table>
                         <tr class="bg-light-gray">
                             <th class="text-uppercase"></th>
                             <th class="text-uppercase">Time</th>
@@ -31,7 +32,7 @@
                                     ${se.timeSlotID.timeSlotID}
                                 </td>
                                 <td>
-                                    ${se.timeSlotID.timeSlotBegin} - ${se.timeSlotID.timeSlotEnd} ${se.sessionDate}
+                                    ${se.timeSlotID.timeSlotBegin} - ${se.timeSlotID.timeSlotEnd} 
                                 </td>
                                 <td>
                                     ${se.roomID.roomID}
@@ -43,7 +44,7 @@
                                     ${se.groupID.courseID.courseName} (${se.groupID.courseID.courseID})
                                 </td>
                                 <td>
-                                    <a href="Attendance?group=${se.groupID.groupID}&session=${se.sessionID}"> Take </a>
+                                    <a href="Attendance?groupID=${se.groupID.groupID}&sessionID=${se.sessionID}"> Take </a>
                                 </td>
                             </tr>
 

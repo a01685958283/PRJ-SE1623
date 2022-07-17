@@ -12,6 +12,14 @@
         <servlet-name>SessionController</servlet-name>
         <servlet-class>controller.SessionController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginController</servlet-name>
+        <servlet-class>controller.LoginController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutController</servlet-name>
+        <servlet-class>controller.LogoutController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ShowController</servlet-name>
         <url-pattern>/Show</url-pattern>
@@ -23,6 +31,14 @@
     <servlet-mapping>
         <servlet-name>SessionController</servlet-name>
         <url-pattern>/Session</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginController</servlet-name>
+        <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutController</servlet-name>
+        <url-pattern>/Logout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

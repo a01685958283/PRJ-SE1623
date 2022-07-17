@@ -5,23 +5,18 @@
 
 package controller;
 
-import dal.SessionDBContext;
 import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import model.Account;
-import model.Session;
 
 /**
  *
- * @author ACER
+ * @author DAT
  */
-public class SessionController extends BaseARC {
+public class LogoutController extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -30,10 +25,21 @@ public class SessionController extends BaseARC {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet LogoutController</title>");  
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet LogoutController at " + request.getContextPath () + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -45,16 +51,10 @@ public class SessionController extends BaseARC {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void processGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        LocalDate now = LocalDate.now();
-        Date date = Date.valueOf(now);
-        SessionDBContext sedb = new SessionDBContext();
-        Account ac = (Account)request.getSession().getAttribute("account");
-        ArrayList<Session> s = sedb.getSessionInADay(ac.getUsername(), date);            
-        
-        request.setAttribute("sessions",s);
-        request.getRequestDispatcher("/view/emp/session.jsp").forward(request, response);
+        request.getSession().invalidate();
+        response.sendRedirect("Login");
     } 
 
     /** 
@@ -65,7 +65,7 @@ public class SessionController extends BaseARC {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void processPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         processRequest(request, response);
     }

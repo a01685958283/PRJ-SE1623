@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author DAT
  */
 public class TimeSlot {
-    private String TimeslotID;
+    private String TimeSlotID;
     private Time TimeSlotBegin;
     private Time TimeSlotEnd;
     private ArrayList<Session> sessions = new ArrayList<>();
@@ -20,8 +20,8 @@ public class TimeSlot {
     public TimeSlot() {
     }
 
-    public TimeSlot(String TimeslotID, Time TimeSlotBegin, Time TimeSlotEnd) {
-        this.TimeslotID = TimeslotID;
+    public TimeSlot(String TimeSlotID, Time TimeSlotBegin, Time TimeSlotEnd) {
+        this.TimeSlotID = TimeSlotID;
         this.TimeSlotBegin = TimeSlotBegin;
         this.TimeSlotEnd = TimeSlotEnd;
     }
@@ -34,8 +34,8 @@ public class TimeSlot {
         this.sessions = sessions;
     }
     
-    public String getTimeslotID() {
-        return TimeslotID;
+    public String getTimeSlotID() {
+        return TimeSlotID;
     }
 
     public Time getTimeSlotBegin() {
@@ -46,8 +46,8 @@ public class TimeSlot {
         return TimeSlotEnd;
     }
 
-    public void setTimeslotID(String TimeslotID) {
-        this.TimeslotID = TimeslotID;
+    public void setTimeSlotID(String TimeSlotID) {
+        this.TimeSlotID = TimeSlotID;
     }
 
     public void setTimeSlotBegin(Time TimeSlotBegin) {

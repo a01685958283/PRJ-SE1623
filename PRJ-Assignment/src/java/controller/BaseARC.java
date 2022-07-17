@@ -4,25 +4,20 @@
  */
 package controller;
 
-import dal.AttendanceDBContext;
-import dal.GroupDBContext;
 import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.Time;
-import java.util.ArrayList;
-import model.Attendence;
-import model.Group;
-import model.Session;
-import model.Student;
+import model.Account;
 
 /**
  *
  * @author ACER
  */
-public class AttendanceController extends HttpServlet {
+public abstract class BaseARC extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,6 +28,11 @@ public class AttendanceController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private boolean isLogin(HttpServletRequest request) {
+        Account a = (Account) request.getSession().getAttribute("account");
+        return a != null;
+    }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -47,19 +47,14 @@ public class AttendanceController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private int getSessionID;
-    
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        GroupDBContext gdb = new GroupDBContext();
-        String gID = request.getParameter("groupID");
-        Group g = gdb.listStudentInAGroup(Integer.parseInt(gID));
-        String sID = request.getParameter("sessionID");
-        getSessionID = Integer.parseInt(sID);
-        request.setAttribute("listStudent", g);
-        request.getRequestDispatcher("/view/emp/attendance.jsp").forward(request, response);
+        if (isLogin(request)) {
+            processGet(request, response);
+        } else {
+            response.getWriter().println("Access denied!");
+        }
     }
 
     /**
@@ -73,26 +68,18 @@ public class AttendanceController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String[] studentIDs = request.getParameterValues("studentID");
-        ArrayList<Attendence> alist = new ArrayList<>();
-        for (int i = 0; i < studentIDs.length; i++) {
-            Attendence a = new Attendence();
-            Student st = new Student();
-            st.setStudentID(studentIDs[i]);
-            
-            Session se = new Session();
-            se.setSessionID(getSessionID);
-            
-            a.setStudentID(st);
-            a.setSessionID(se);
-            a.setStatus(request.getParameter("status_"+studentIDs[i]));
-            a.setComment(request.getParameter("comment_"+studentIDs[i]));
-            a.setRecordTime(Time.valueOf(request.getParameter("recordtime_"+studentIDs[i])));
-            alist.add(a);
+        if (isLogin(request)) {
+            processPost(request, response);
+        } else {
+            response.getWriter().println("Access denied!");
         }
-        AttendanceDBContext atdb = new AttendanceDBContext();
-        atdb.insertAttendance(alist);
     }
+
+    protected abstract void processGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException;
+
+    protected abstract void processPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException;
 
     /**
      * Returns a short description of the servlet.
