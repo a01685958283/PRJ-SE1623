@@ -7,11 +7,12 @@ package controller;
 
 import dal.SessionDBContext;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import model.Session;
 
@@ -44,11 +45,11 @@ public class SessionController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-         SessionDBContext sedb = new SessionDBContext();
-         //ArrayList<Session> s = sedb.getSessionInADay();            
+        SessionDBContext sedb = new SessionDBContext();
+        ArrayList<Session> s = sedb.getSessionInADay("sonnt5", Date.valueOf("2022-05-09"));            
         
-        //request.setAttribute("sessions",s);
-        request.getRequestDispatcher("../view/emp/session.jsp").forward(request, response);
+        request.setAttribute("sessions",s);
+        request.getRequestDispatcher("/view/emp/session.jsp").forward(request, response);
     } 
 
     /** 

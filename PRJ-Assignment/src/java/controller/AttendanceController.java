@@ -6,21 +6,17 @@ package controller;
 
 import dal.AttendanceDBContext;
 import dal.GroupDBContext;
-import dal.StudentGroupDBContext;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 import model.Attendence;
 import model.Group;
 import model.Session;
 import model.Student;
-import model.StudentGroup;
 
 /**
  *

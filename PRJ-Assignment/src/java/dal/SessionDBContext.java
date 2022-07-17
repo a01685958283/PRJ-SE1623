@@ -24,28 +24,29 @@ import model.TimeSlot;
  */
 public class SessionDBContext extends DBContext<Session> {
 
-    public ArrayList<Session> getSessionInADay(String LecturesID, Date SessionDate) {
+    public ArrayList<Session> getSessionInADay(String lecturesID, Date date) {
         ArrayList<Session> sessions = new ArrayList<>();
         try {
-            String sql = "SELECT s.SessionID,s.SessionDate,g.GroupID,g.GroupName,g.LecturesID,c.CourseID,c.CourseName,t.TimeSlotID,t.TimeSlotBegin,t.TimeSlotEnd,r.RoomID\n"
-                    + "From Session s join [Group] g on s.GroupID like g.GroupID "
-                    + "join Course c on g.CourseID like c.CourseID "
-                    + "join TimeSlot t on s.TimeSlotID like t.TimeSlotID"
-                    + "join Room r on s.RoomID = r.RoomID\n";
-                    //+ "where g.LecturesID = ? and s.SessionDate = ?";
+            String sql = "SELECT s.SessionID,s.SessionDate,g.GroupID,g.GroupName,l.LecturesID,c.CourseID,c.CourseName,t.TimeSlotID,t.TimeSlotBegin,t.TimeSlotEnd,r.RoomID\n"
+                    + "From Session s join [Group] g on s.GroupID = g.GroupID\n"
+                    + "join Course c on g.CourseID = c.CourseID \n"
+                    + "join TimeSlot t on s.TimeSlotID = t.TimeSlotID\n"
+                    + "join Lectures l on g.LecturesID = l.LecturesID\n"
+                    + "join Room r on s.RoomID = r.RoomID\n"
+                    + "where g.LecturesID = 'sonnt5' and s.SessionDate = '2022-05-09'";
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setString(1, LecturesID);
-            stm.setDate(2, SessionDate);
+            stm.setString(1, lecturesID);
+            stm.setDate(2, date);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Session se = new Session();
                 se.setSessionID(rs.getInt("SessionID"));
                 se.setSessionDate(rs.getDate("SessionDate"));
-
+                
                 Room r = new Room();
                 r.setRoomID(rs.getString("RoomID"));
                 se.setRoomID(r);
-                
+
                 Group g = new Group();
                 g.setGroupID(rs.getInt("GroupID"));
                 g.setGroupName(rs.getString("GroupName"));
@@ -59,12 +60,13 @@ public class SessionDBContext extends DBContext<Session> {
                 c.setCourseName(rs.getString("CourseName"));
                 g.setCourseID(c);
                 se.setGroupID(g);
-                
+
                 TimeSlot ts = new TimeSlot();
-                ts.setTimeslotID(rs.getString("TimeslotID"));
+                ts.setTimeslotID(rs.getString("TimeSlotID"));
                 ts.setTimeSlotBegin(rs.getTime("TimeSlotBegin"));
                 ts.setTimeSlotEnd(rs.getTime("TimeSlotEnd"));
                 se.setTimeSlotID(ts);
+
                 sessions.add(se);
             }
         } catch (SQLException ex) {

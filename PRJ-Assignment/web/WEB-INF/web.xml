@@ -9,10 +9,6 @@
         <servlet-class>controller.AttendanceController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>FilterController</servlet-name>
-        <servlet-class>controller.FilterController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>SessionController</servlet-name>
         <servlet-class>controller.SessionController</servlet-class>
     </servlet>
@@ -23,10 +19,6 @@
     <servlet-mapping>
         <servlet-name>AttendanceController</servlet-name>
         <url-pattern>/Attendance</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>FilterController</servlet-name>
-        <url-pattern>/Filter</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SessionController</servlet-name>

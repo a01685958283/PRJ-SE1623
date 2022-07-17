@@ -14,10 +14,10 @@
     <body>
         <form action = "attendance" method = "POST">
             <div class="table-responsive">
-                <table class="table table-bordered text-center">
-                    <thead>
+                <table class="table table-bordered table-striped table-responsive-stack"  id="tableOne">
+      <thead class="thead-dark">
                         <tr class="bg-light-gray">
-                            <th class="text-uppercase">No</th>
+                            <th class="text-uppercase"></th>
                             <th class="text-uppercase">Time</th>
                             <th class="text-uppercase">Room</th>
                             <th class="text-uppercase">Group</th>
@@ -25,8 +25,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${requestScope.sessions}" var="se" varStatus="loop">
+                    <c:forEach items="${requestScope.sessions}" var="se" varStatus="loop">
                             <tr>
+                                <td>
+                                    ${se.timeSlotID.timeSlotID}
+                                </td>
                                 <td>
                                     ${se.timeSlotID.timeSlotBegin} - ${se.timeSlotID.timeSlotEnd} ${se.sessionDate}
                                 </td>
@@ -39,16 +42,9 @@
                                 <td>
                                     ${se.groupID.courseID.courseName} (${se.groupID.courseID.courseID})
                                 </td>
-                                <c:if test="${not requestScope.check[loop.index]}">
-                                    <td>
-                                        <a href="Attendance?group=${se.groupID.groupID}&session=${se.sessionID}"> Take </a>
-                                    </td>
-                                </c:if>
-                                <c:if test="${requestScope.check[loop.index]}">
-                                    <td>
-                                        <a href="View?session=${se.sessionID}"> View </a>
-                                    </td>
-                                </c:if>
+                                <td>
+                                    <a href="Attendance?group=${se.groupID.groupID}&session=${se.sessionID}"> Take </a>
+                                </td>
                             </tr>
 
                         </c:forEach>
